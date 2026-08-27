@@ -10,14 +10,16 @@ pipeline {
 
     stage("Deploy") {
       steps {
-        // Jenkins and the app run on the SAME VPS.
-        // Change APP_DIR to the folder you clone into on the server.
-        sh """
-          cd /var/www/easy-node-server
-          git pull origin main
-          npm ci || npm install
-          pm2 restart easy-node-server || pm2 start server.js --name easy-node-server
-        """
+        withCredentials([string(credentialsId: "APP_SECRET", variable: "APP_SECRET")]) {
+          sh '''
+            cd /var/www/easy-node-server
+            git pull origin main
+            npm ci || npm install
+            export APP_SECRET
+            pm2 restart easy-node-server --update-env || pm2 start server.js --name easy-node-server --update-env
+            pm2 save
+          '''
+        }
       }
     }
   }
