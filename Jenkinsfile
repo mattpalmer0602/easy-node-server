@@ -16,6 +16,7 @@ pipeline {
             git pull origin main
             npm ci || npm install
             export APP_SECRET
+
             pm2 restart easy-node-server --update-env || pm2 start server.js --name easy-node-server --update-env
             pm2 save
 
