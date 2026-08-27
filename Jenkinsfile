@@ -16,11 +16,7 @@ pipeline {
           cd /var/www/easy-node-server
           git pull origin main
           npm ci || npm install
-          if [ ! -f .env ]; then
-            echo "Missing /var/www/easy-node-server/.env"
-            exit 1
-          fi
-          pm2 restart easy-node-server --update-env || pm2 start server.js --name easy-node-server
+          pm2 restart easy-node-server || pm2 start server.js --name easy-node-server
         """
       }
     }

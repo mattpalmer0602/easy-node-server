@@ -8,8 +8,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "dependencies": {
-    "dotenv": "^17.4.2"
   }
 }
