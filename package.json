@@ -1,0 +1,12 @@
+{
+  "name": "easy-node-server",
+  "version": "1.0.0",
+  "description": "Simple Node server for Jenkins auto-deploy",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
